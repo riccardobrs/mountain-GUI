@@ -1,5 +1,5 @@
 import mysql.connector
-from mysql.connector import errorcode
+import sys
 
 
 class DataBase:
@@ -21,12 +21,7 @@ class DataBase:
                                                         password=self.psw,
                                                         database=self.db)
         except mysql.connector.Error as error:
-            if error.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-                print("[ERROR] not valid name or password")
-            elif error.errno == errorcode.ER_BAD_DB_ERROR:
-                print("[ERROR] database {0} does not exist".format(self.db))
-            else:
-                print(error)
+            sys.exit(error)
         
     def __disconnect(self):
 
@@ -54,9 +49,9 @@ class DataBase:
         if columns == '*':
             cols = columns
         else:
-            if type(columns).__name__ = 'str':
+            if type(columns).__name__ == 'str':
                 columns_list = columns.split(',')
-            elif type(columns).__name__ = 'list':
+            elif type(columns).__name__ == 'list':
                 columns_list = columns
             else:
                 raise TypeError
@@ -72,7 +67,7 @@ class DataBase:
         fields = ''
         for key,val in key_val.items():
             fields += "[" + key + "]="
-            if type(val).__name__ = 'str':
+            if type(val).__name__ == 'str':
                 fields += "'" + val + "'"
             else:
                 fields += val
@@ -87,7 +82,7 @@ class DataBase:
         columns = "[" + "],[".join(key_val.keys()) + "]"
         values = "["
         for key,val in key_val.items():
-            if type(val).__name__ = 'str':
+            if type(val).__name__ == 'str':
                 values += "'" + val + "'"
             else:
                 values += val
