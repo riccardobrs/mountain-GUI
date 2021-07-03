@@ -1,0 +1,57 @@
+<Login>
+    FloatLayout:
+        id: login
+        canvas.before:
+            Rectangle:
+                size: self.size
+                source: root.homepage
+        
+        CommonLabel:
+            text: root.main_title
+            font_size: root.title_font_size
+            pos_hint: {'left': 0, 'top': 0.93}
+            size_hint: 1, .1
+        
+        GridLayout:
+            spacing: 9, 9
+            cols: 2
+            rows: 2
+            pos_hint: {'center_y': .53, 'center_x': 0.5}
+            size_hint: 0.5, 0.2
+
+            CommonLabel:
+                text: 'Username'
+                font_size: root.label_font_size  
+            CommonTextInput:
+                id: user
+                password: False
+                hint_text: 'Inserire Username'
+                font_size: root.label_font_size
+            
+            CommonLabel:
+                text: 'Password'
+                font_size: root.label_font_size
+            CommonTextInput:
+                id: psw
+                password: True
+                hint_text: 'Inserire Password'
+                font_size: root.label_font_size
+
+        GridLayout:
+            spacing: 20, 20
+            cols: 2
+            rows: 1
+            pos_hint: {'center_x': .494, 'y': .1}
+            size_hint: 0.5, 0.2 
+            
+            SmoothButton:
+                text: 'Login'
+                font_size: root.button_font_size
+                on_release: root.login()
+                press_color: (0, .8, .2, .7)
+            SmoothButton:
+                text: 'Esci'
+                font_size: root.button_font_size
+                on_release: app.stop()
+                press_color: (1, 0, 0, .7)
+                        

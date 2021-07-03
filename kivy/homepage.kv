@@ -1,0 +1,41 @@
+<HomePage>
+    FloatLayout:
+        id: home
+        canvas.before:
+            Rectangle:
+                size: self.size
+                source: root.homepage
+    
+    CommonLabel:
+        text: root.home_title
+        font_size: root.title_font_size
+        pos_hint: {'left': 0, 'top': 0.93}
+        size_hint: 1, .1
+    
+    GridLayout:
+        spacing: 20, 20
+        cols: 1
+        rows: 3
+        pos_hint: {'center_x': .5, 'center_y': .45}
+        size_hint: .4, .3
+
+        SmoothButton:
+            text: 'Cerca un itinerario'
+            font_size: root.button_font_size
+            size_hint: 1, .333
+            on_release: root.search()
+            press_color: (0, .4, .8, .7)
+        
+        SmoothButton:
+            text: 'Inserisci un nuovo itinerario'
+            font_size: root.button_font_size
+            size_hint: 1, .333
+            on_release: root.insert()
+            press_color: (0, .4, .8, .7)
+
+        SmoothButton:
+            text: 'Esci'
+            font_size: root.button_font_size
+            size_hint: 1, .333
+            on_release: app.stop()
+            press_color: (1, 0, 0, .7)

@@ -1,0 +1,33 @@
+mountain-gui:
+
+  main: "mountain-GUI.py"
+
+  prod: False
+
+  enable_db: False
+
+  mysql:
+    test:
+      host: "localhost"
+      db: "your-test-db"
+      table: "your-test-table"
+    prod:
+      host: "your-prod-hostname"
+      db: "your-prod-db"
+      table: "your-prod-table"
+  
+  kivy:
+    images:
+      homepage: "../images/homepage.jpg"
+      error: "../images/homepage.jpg"
+    font_size:
+      title: 40
+      label: 30
+      button: 35
+      error: 40
+    text:
+      main_title: "Mountain-GUI App"
+      home_title: "Seleziona una funzionalità"
+      insert_title: "Inserimento dati"
+      error:
+        auth: "Errore di autenticazione"

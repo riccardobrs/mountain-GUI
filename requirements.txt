@@ -1,5 +1,7 @@
 mysql-connector-python>=8.0.25
+Kivy>=2.0.0
 numpy>=1.21.0
 pandas>=1.2.5
 matplotlib>=3.4.2
 PyYAML>=5.4.1
+urllib3>=1.26.6

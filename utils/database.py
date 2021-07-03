@@ -1,4 +1,4 @@
-import mysql.connector
+import mysql.connector as msql
 import sys
 
 
@@ -16,12 +16,13 @@ class DataBase:
     def __connect(self):
 
         try:
-            self.__connection = mysql.connector.connect(host=self.host,
-                                                        user=self.user,
-                                                        password=self.psw,
-                                                        database=self.db)
-        except mysql.connector.Error as error:
-            sys.exit(error)
+            self.__connection = msql.connect(host=self.host,
+                                             user=self.user,
+                                             password=self.psw,
+                                             database=self.db)
+        except msql.Error as error:
+            print(error)
+            self.__connection = None
         
     def __disconnect(self):
 
@@ -43,6 +44,20 @@ class DataBase:
 
         if fetchall: return result
         else: return
+    
+    def connection_error(self):
+
+        try:
+            self.__connection = msql.connect(host=self.host,
+                                             user=self.user,
+                                             password=self.psw,
+                                             database=self.db)
+            self.__disconnect()
+            return None
+
+        except msql.errors.Error as error:
+            self.__connection = None
+            return error
 
     def select(self, table, condition, columns='*'):
 

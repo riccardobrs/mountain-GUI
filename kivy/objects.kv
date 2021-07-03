@@ -1,0 +1,42 @@
+<CommonLabel@Label>
+    canvas.before:
+        Color:
+            rgba: 0, 0, 0, .7
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+<CommonTextInput@TextInput>
+    multiline: False
+    write_tab: False
+    height: 45
+    padding: [0, (self.height - self.line_height)/2]
+    halign: 'center'
+
+<SmoothButton@Button>
+    background_color: (0, 0, 0, 0)
+    #background_normal: ''
+    back_color: (0, 0, 0, .7)
+    size: 400, 110
+    size_hint: None, None
+    canvas.before:
+        Color:
+            rgba: (0, 0, 0, .7) if self.state == 'normal' else self.press_color
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [45,0,45,0]
+
+<SpinnerButton@Button>
+    background_color: (0, 0, 0, 0)
+    #background_normal: ''
+    back_color: (0, 0, 0, .7)
+    size: 400, 110
+    size_hint: None, None
+    canvas.before:
+        Color:
+            rgba: (.2, 0, 0, .7)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [45,45,45,45]

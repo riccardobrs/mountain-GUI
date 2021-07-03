@@ -1,0 +1,123 @@
+<Insert>
+    FloatLayout:
+        id: insert
+        canvas.before:
+            Rectangle:
+                size: self.size
+                source: root.homepage
+        
+        CommonLabel:
+            id: insert_label
+            text: root.insert_title
+            font_size: root.title_font_size
+            pos_hint: {'left': 0, 'top': 0.93}
+            size_hint: 1, .1
+        
+        Label:
+            id: display_step
+            step: 1 # default
+            text: str(self.step) + '/3'
+            font_size: 25
+            pos_hint: {'center_x': .8, 'center_y': .89}
+            size_hint: 1, .1
+        
+        ProgressBar:
+            id: progress_bar
+            min: 0
+            max: 1
+            pos_hint: {'center_x': .8, 'center_y': .865}
+            size_hint_x: .2
+            value: .333 # default
+        
+        Label:
+            id: alert
+            markup: True
+            alert: ''
+            text: '[color=#FF0000]' + self.alert + '[/color]'
+            font_size: 28
+            pos_hint: {'center_x': .5, 'center_y': .8}
+            size_hint: 1, .1
+
+<InsertStep1>
+
+    GridLayout:
+        cols: 2
+        rows: 1
+        cols_minimum: {0: 80, 1: 350}
+        pos_hint: {'center_x': .5, 'y': .65}
+        size_hint: 0.8, 0.1
+        spacing: 20, 20
+
+        CommonLabel:
+            text: 'Titolo'
+            font_size: root.label_font_size
+            pos_hint: {'left': 0, 'top': 0.93}
+            size_hint: 1, .1
+        CommonTextInput:
+            id: title
+            password: False
+            hint_text: 'Inserire titolo'
+            font_size: root.label_font_size
+    
+    GridLayout:
+        cols: 2
+        rows: 4
+        pos_hint: {'center_x': .5, 'y': .2}
+        size_hint: 0.8, 0.4
+        spacing: 20, 10
+
+        CommonLabel:
+            text: 'Regione'
+            font_size: root.label_font_size
+        CommonLabel:
+            text: 'Montagna'
+            font_size: root.label_font_size
+        CommonTextInput:
+            id: region
+            password: False
+            hint_text: 'Inserire regione'
+            font_size: root.label_font_size
+        CommonTextInput:
+            id: mountain
+            password: False
+            hint_text: 'Inserire montagna'
+            font_size: root.label_font_size
+        CommonLabel:
+            text: 'Tipologia'
+            font_size: root.label_font_size
+        CommonLabel:
+            text: 'Altitudine [m]'
+            font_size: root.label_font_size
+        Spinner:
+            id: route_type
+            markup: True
+            default_text: '<Clicca per selezionare una tipologia>'
+            text: '[color=#aed6f1][i]'+self.default_text+'[/i][/color]'
+            values: ['Alta quota', 'Alpinismo/arrampicata', 'Via ferrata', 'Escursione', self.default_text]
+            on_text: self.text='[color=#aed6f1][i]'+self.text+'[/i][/color]' if self.text==self.default_text else self.text
+        CommonTextInput:
+            id: altitude
+            markup: True
+            password: False
+            hint_text: 'Inserire altitudine'
+            font_size: root.label_font_size
+        
+    SmoothButton:
+        text: 'Prosegui'
+        font_size: root.button_font_size
+        on_release: root.validate_data()
+        press_color: (1, 0, 0, .7)
+
+<InsertStep2>
+    SmoothButton:
+        text: 'Esci'
+        font_size: root.button_font_size
+        on_release: root.next()
+        press_color: (1, 0, 0, .7)
+
+<InsertStep3>
+    SmoothButton:
+        text: 'Esci'
+        font_size: root.button_font_size
+        on_release: app.stop()
+        press_color: (1, 0, 0, .7)
